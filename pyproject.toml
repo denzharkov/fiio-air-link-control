@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=69"]
+requires = ["setuptools==83.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -12,11 +12,11 @@ license = { file = "UNLICENSE" }
 authors = [{ name = "FIIO Air Link Control contributors" }]
 dependencies = [
     "hidapi==0.14.0.post4",
-    "pywebview>=6.0,<7",
+    "pywebview==6.2.1",
 ]
 
 [project.optional-dependencies]
-build = ["pyinstaller>=6.8"]
+build = ["pyinstaller==6.21.0", "pyinstaller-hooks-contrib==2026.6"]
 
 [project.gui-scripts]
 fiio-air-link-control = "fiiocontrol.app:main"

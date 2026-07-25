@@ -78,11 +78,16 @@ name length is little-endian bytes `18..19`; UTF-8 name begins at byte `20`.
 
 - 62 unit tests pass.
 - `pip check` passes.
+- Published unsigned `v0.2.0-beta.1` received a user-side Defender ML detection
+  `Trojan:Win32/Wacatac.B!ml`; its binary must not be treated as distributable.
 - Portable EXE builds and launches.
-- Latest local portable size is 13,902,251 bytes (approximately 13.26 MiB).
+- Latest local unsigned portable size is 13,899,966 bytes (approximately 13.26 MiB).
 - EXE is unsigned and may trigger SmartScreen.
-- CI runs tests, builds the Windows portable EXE, generates SHA-256, and uploads
-  both files as an artifact. Code signing is still unavailable.
+- Regular CI tests and validates an unsigned Windows build without publishing it.
+- Tag workflow builds on a GitHub-hosted runner, submits the artifact to SignPath,
+  requires a valid timestamped RSA Authenticode signature, then creates SHA-256
+  and publishes the GitHub Release. SignPath approval and repository settings are
+  still required before the first signed release.
 - Pairing command `18` is available in the UI and confirmed by paired-list readback.
 - A clean Windows 10/11 test without Python is still required.
 

@@ -36,8 +36,12 @@
   используется только как промежуточный reset и не проходит устойчивый readback.
 - Успешный pair action `18`, event `0x83` и paired-device list readback аппаратно
   подтверждены; pairing доступен без firmware-gating.
-- CI собирает portable Windows EXE, создаёт SHA-256 и загружает оба файла как
-  artifact; подпись и installer остаются release-задачами.
+- Обычный CI проверяет unsigned Windows build, но не публикует его. Tag workflow
+  отправляет GitHub artifact в SignPath, проверяет RSA Authenticode signature и
+  timestamp, затем публикует подписанный EXE и SHA-256 в GitHub Release.
+- Unsigned `v0.2.0-beta.1` получил пользовательский Defender ML detect
+  `Trojan:Win32/Wacatac.B!ml`; замена должна выйти отдельным подписанным
+  `v0.2.0-beta.2` после решения Microsoft по false-positive submission.
 - Следующий этап: исследовать удаление одного сопряжения.
 
 ## Принципы разработки
