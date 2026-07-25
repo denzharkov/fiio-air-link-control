@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.coverage
+.pytest_cache/
+.mypy_cache/
+
+# Build output
+build/
+dist/
+/release/
+
+# Logs and local configuration
+logs/
+*.log
+*.local
+.env*
+!.env.example
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.sln
+*.sw?

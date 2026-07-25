@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fiio-air-link-control"
+version = "0.2.0"
+description = "Native Windows controller for FIIO Air Link"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "UNLICENSE" }
+authors = [{ name = "FIIO Air Link Control contributors" }]
+dependencies = [
+    "hidapi==0.14.0.post4",
+    "pywebview>=6.0,<7",
+]
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6.8"]
+
+[project.gui-scripts]
+fiio-air-link-control = "fiiocontrol.app:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["fiiocontrol*"]
+
+[tool.setuptools.package-data]
+fiiocontrol = ["web/*.html", "web/*.js", "web/*.css"]
+
+[tool.coverage.run]
+source = ["fiiocontrol"]
