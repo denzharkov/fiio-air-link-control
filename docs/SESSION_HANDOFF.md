@@ -83,11 +83,14 @@ name length is little-endian bytes `18..19`; UTF-8 name begins at byte `20`.
 - Portable EXE builds and launches.
 - Latest local unsigned portable size is 13,899,966 bytes (approximately 13.26 MiB).
 - EXE is unsigned and may trigger SmartScreen.
-- Regular CI tests and validates an unsigned Windows build without publishing it.
-- Tag workflow builds on a GitHub-hosted runner, submits the artifact to SignPath,
-  requires a valid timestamped RSA Authenticode signature, then creates SHA-256
-  and publishes the GitHub Release. SignPath approval and repository settings are
-  still required before the first signed release.
+- Regular CI validates both the unsigned executable and a development MSIX.
+- SignPath Foundation rejected the project because it does not yet have enough
+  external reputation signals. The release path is now Microsoft Store MSIX;
+  Store certification automatically replaces the package signature with a
+  Microsoft certificate.
+- Store identity from Partner Center is committed in
+  `packaging/store_identity.json`; the Store workflow runs on `main` pushes or
+  manually and produces an MSIX artifact for Partner Center submission.
 - Pairing command `18` is available in the UI and confirmed by paired-list readback.
 - A clean Windows 10/11 test without Python is still required.
 

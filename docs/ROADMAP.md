@@ -36,12 +36,14 @@
   используется только как промежуточный reset и не проходит устойчивый readback.
 - Успешный pair action `18`, event `0x83` и paired-device list readback аппаратно
   подтверждены; pairing доступен без firmware-gating.
-- Обычный CI проверяет unsigned Windows build, но не публикует его. Tag workflow
-  отправляет GitHub artifact в SignPath, проверяет RSA Authenticode signature и
-  timestamp, затем публикует подписанный EXE и SHA-256 в GitHub Release.
+- Обычный CI проверяет unsigned Windows build и development MSIX, но не публикует
+  бинарники. Production MSIX собирается отдельным Store workflow с Product
+  identity из Partner Center; Microsoft Store переподписывает пакет после
+  сертификации.
 - Unsigned `v0.2.0-beta.1` получил пользовательский Defender ML detect
   `Trojan:Win32/Wacatac.B!ml`; замена должна выйти отдельным подписанным
-  `v0.2.0-beta.2` после решения Microsoft по false-positive submission.
+  `v0.2.0-beta.2` через Microsoft Store. Microsoft подтвердил false positive и
+  удалил детект для отправленного файла.
 - Следующий этап: исследовать удаление одного сопряжения.
 
 ## Принципы разработки

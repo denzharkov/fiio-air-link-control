@@ -99,12 +99,7 @@ Unit-тесты не требуют подключённого устройст�
 .\.venv\Scripts\python.exe scripts\hardware_smoke.py --verify-pairing-mode
 ```
 
-## Windows EXE
-
-Готовые Windows-сборки публикуются на странице
-[GitHub Releases](https://github.com/denzharkov/fiio-air-link-control/releases).
-Code signing for this project is provided by
-[SignPath Foundation](https://signpath.org/).
+## Windows-сборка
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -e ".[build]"
@@ -114,40 +109,20 @@ Code signing for this project is provided by
 Результат: `release/FIIO-Air-Link-Control.exe`. Файл пока не подписан, поэтому
 Microsoft SmartScreen может показать предупреждение.
 
-Публичные релизы создаются только workflow `Signed Windows Release` по тегам
-`v*`. Workflow собирает EXE на GitHub-hosted runner, отправляет artifact в
-SignPath, проверяет RSA Authenticode signature и timestamp, после чего создаёт
-checksum и публикует GitHub Release. Обычный CI проверяет unsigned build, но не
-выкладывает его как доступный для распространения artifact.
+Для Microsoft Store используется one-folder PyInstaller payload внутри MSIX:
 
-Для подключения SignPath Foundation нужны repository secret
-`SIGNPATH_API_TOKEN` и variables `SIGNPATH_ORGANIZATION_ID`,
-`SIGNPATH_PROJECT_SLUG`, `SIGNPATH_SIGNING_POLICY_SLUG`. Default artifact
-configuration в SignPath должна подписывать файл внутри GitHub artifact:
-
-```xml
-<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
-  <zip-file>
-    <pe-file path="FIIO-Air-Link-Control.exe">
-      <authenticode-sign
-        description="FIIO Air Link Control"
-        description-url="https://github.com/denzharkov/fiio-air-link-control" />
-    </pe-file>
-  </zip-file>
-</artifact-configuration>
+```powershell
+.\.venv\Scripts\python.exe scripts\build_msix.py
 ```
 
-Порядок подключения:
+Store автоматически переподписывает прошедший сертификацию MSIX сертификатом
+Microsoft. Production identity из Partner Center хранится в публичном файле
+`packaging/store_identity.json`; это не секретные данные.
 
-1. Подать заявку OSS-проекта на <https://signpath.org/apply>.
-2. После одобрения установить SignPath GitHub App для этого репозитория и
-   подключить trusted build system `GitHub.com` к SignPath project.
-3. Добавить XML выше как default artifact configuration и создать release
-   signing policy с RSA Authenticode certificate и timestamping.
-4. Добавить secret и variables из списка выше в GitHub repository settings.
-5. Создать новый tag вида `v0.2.0-beta.2`. Workflow опубликует release только
-   после успешной подписи и локальной проверки цепочки сертификатов.
+Так как Store запрещает нулевую первую часть package version, версия приложения
+`0.2.0` упаковывается как MSIX version `1.2.0.0`; это не меняет отображаемую
+версию FALC.
 
-False-positive detections отправляются через Microsoft Security Intelligence
-как `Software developer → Incorrectly detected as malware/malicious`:
-<https://www.microsoft.com/en-us/wdsi/filesubmission>.
+Workflow `Microsoft Store Package` запускается после push в `main` и вручную,
+собирает production MSIX artifact для загрузки в Partner Center. GitHub Releases
+не используются для распространения unsigned Windows binaries.

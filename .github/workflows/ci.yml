@@ -43,3 +43,5 @@ jobs:
           if ($signature.Status -ne "NotSigned") {
             throw "CI build must remain unsigned; release signing has a separate trusted workflow"
           }
+      - name: Validate development MSIX package
+        run: python scripts/build_msix.py

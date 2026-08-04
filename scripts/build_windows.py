@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import shutil
 import subprocess
@@ -14,6 +15,13 @@ NAME = "FIIO-Air-Link-Control"
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--onedir",
+        action="store_true",
+        help="Build a one-folder payload suitable for MSIX packaging",
+    )
+    options = parser.parse_args()
     if sys.platform != "win32":
         raise SystemExit("Windows executable must be built on Windows")
     try:
@@ -31,6 +39,7 @@ def main() -> None:
         build_dir,
         spec_dir / f"{NAME}.spec",
         RELEASE / f"{NAME}.exe",
+        RELEASE / NAME,
     ):
         if path.is_dir():
             shutil.rmtree(path)
@@ -56,8 +65,10 @@ def main() -> None:
             str(ROOT / "scripts" / "pyinstaller_entry.py"),
             "--name",
             NAME,
-            "--onefile",
+            "--onedir" if options.onedir else "--onefile",
             "--windowed",
+            "--icon",
+            str(ROOT / "assets" / "app-icon.ico"),
             "--clean",
             "--noconfirm",
             "--paths",
@@ -70,8 +81,6 @@ def main() -> None:
             str(spec_dir),
             "--hidden-import",
             "hid",
-            "--collect-all",
-            "webview",
             "--add-data",
             f"{ROOT / 'fiiocontrol' / 'web'};fiiocontrol/web",
             "--add-data",
