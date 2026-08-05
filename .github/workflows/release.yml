@@ -47,8 +47,11 @@ jobs:
           if ($env:RELEASE_TAG -ne $expected -and -not $env:RELEASE_TAG.StartsWith("$expected-")) {
             throw "Tag $env:RELEASE_TAG does not match project version $version"
           }
-          git ls-remote --exit-code --tags origin "refs/tags/$env:RELEASE_TAG" *> $null
-          if ($LASTEXITCODE -eq 0) {
+          $existingTag = git ls-remote --tags origin "refs/tags/$env:RELEASE_TAG"
+          if ($LASTEXITCODE -ne 0) {
+            throw "Failed to query existing tags"
+          }
+          if ($existingTag) {
             throw "Tag $env:RELEASE_TAG already exists"
           }
 
