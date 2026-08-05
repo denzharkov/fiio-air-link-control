@@ -15,6 +15,7 @@ FIIO Air Link Control (FALC) — неофициальное open-source прил
 ### Обзор
 
 Показывает основное состояние Air Link:
+<img width="1083" height="777" alt="Screenshot_1" src="https://github.com/user-attachments/assets/c8f93c25-3bcf-4b3a-afb0-49771aed29e1" />
 
 - прошивку устройства и версию приложения;
 - активное Bluetooth-подключение и количество подключённых гарнитур;
@@ -27,6 +28,7 @@ FIIO Air Link Control (FALC) — неофициальное open-source прил
 ### Аудио
 
 Управляет возможностями Bluetooth-аудио:
+<img width="1077" height="775" alt="Screenshot_2" src="https://github.com/user-attachments/assets/ba0fa2ac-901d-4c85-81a0-444771e08c4e" />
 
 - включает и выключает поддерживаемые кодеки;
 - выбирает режим качества LDAC;
@@ -39,6 +41,7 @@ FIIO Air Link Control (FALC) — неофициальное open-source прил
 ### Устройства
 
 Управляет Bluetooth-приёмниками и наушниками:
+<img width="1073" height="768" alt="Screenshot_3" src="https://github.com/user-attachments/assets/7f2e5409-e9b7-4bfd-b9e9-58a7e075b064" />
 
 - показывает сопряжённые устройства и состояние их подключения;
 - подключает или отключает ранее сопряжённое устройство;
@@ -51,6 +54,7 @@ Air Link должен быть подключён по USB. Перед поис�
 ### Диагностика
 
 Показывает информацию для поиска проблем:
+<img width="1076" height="912" alt="Screenshot_4" src="https://github.com/user-attachments/assets/c0407b53-de90-446b-8a62-c1a7f4a9ca79" />
 
 - прошивку и параметры HID-интерфейса;
 - успешные запросы, тайм-ауты и ошибки ввода-вывода;
