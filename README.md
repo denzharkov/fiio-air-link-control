@@ -113,3 +113,8 @@ GitHub Actions после успешных тестов собирает тот 
 SHA-256 и публикует оба файла как workflow artifact. Microsoft Security
 Intelligence проверил первый публичный build после детекта
 `Trojan:Win32/Wacatac.B!ml`, признал файл безопасным и удалил false positive.
+
+Для выпуска новой версии откройте GitHub Actions → `Create GitHub Release` →
+`Run workflow`, укажите новый tag и флаг pre-release. Workflow проверит версию и
+отсутствие такого тега, запустит тесты, соберёт EXE, создаст checksum, tag и
+GitHub Release с обоими файлами.
