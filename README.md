@@ -14,6 +14,7 @@ accounts, or cloud services.
 ### Overview
 
 Shows the current Air Link state at a glance:
+<img width="1077" height="908" alt="Screenshot_5" src="https://github.com/user-attachments/assets/38e3d216-f7db-48e4-80d0-b238b57cd433" />
 
 - firmware and application build;
 - active Bluetooth connection and connected headsets;
@@ -26,6 +27,7 @@ Automatic connection resumes when a new session is started.
 ### Audio
 
 Controls Bluetooth audio capabilities:
+<img width="1077" height="908" alt="Screenshot_1" src="https://github.com/user-attachments/assets/c2388f85-5379-43af-8d22-f0d2ab0afc54" />
 
 - enable or disable supported codecs;
 - select LDAC quality mode;
@@ -38,6 +40,7 @@ conditions.
 ### Devices
 
 Manages Bluetooth receivers and headphones:
+<img width="1076" height="906" alt="Screenshot_2" src="https://github.com/user-attachments/assets/ae19d91c-361f-4daf-95cd-346c89f96288" />
 
 - view paired devices and their connection state;
 - connect or disconnect a paired device;
@@ -50,6 +53,7 @@ and disconnect it from other Bluetooth sources before starting discovery.
 ### Diagnostics
 
 Provides information useful for troubleshooting:
+<img width="1074" height="908" alt="Screenshot_3" src="https://github.com/user-attachments/assets/7e3a4a69-c87b-4ac9-837e-eb821a637cc8" />
 
 - firmware and HID interface details;
 - successful requests, timeouts, and I/O errors;
