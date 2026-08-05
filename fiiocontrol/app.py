@@ -257,7 +257,7 @@ def main() -> None:
         width=1100,
         height=820,
         min_size=(760, 600),
-        background_color="#0b1013",
+        background_color="#171512",
     )
     window.events.closed += backend.close
     webview.start(
