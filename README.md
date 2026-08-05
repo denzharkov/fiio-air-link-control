@@ -98,9 +98,5 @@ Build the portable executable with:
 .\.venv\Scripts\python.exe scripts\build_windows.py
 ```
 
-Protocol notes and current limitations are documented in
-[`docs/FIIO_AIR_LINK_HANDOFF.md`](docs/FIIO_AIR_LINK_HANDOFF.md). The development
-roadmap is available in [`docs/ROADMAP.md`](docs/ROADMAP.md).
-
 FIIO Air Link Control is an independent community project and is not affiliated
 with or endorsed by FIIO Electronics Technology Co., Ltd.

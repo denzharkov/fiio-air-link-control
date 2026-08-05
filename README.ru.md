@@ -100,9 +100,5 @@ python -m venv .venv
 .\.venv\Scripts\python.exe scripts\build_windows.py
 ```
 
-Описание протокола и текущих ограничений находится в
-[`docs/FIIO_AIR_LINK_HANDOFF.md`](docs/FIIO_AIR_LINK_HANDOFF.md), а план
-разработки — в [`docs/ROADMAP.md`](docs/ROADMAP.md).
-
 FIIO Air Link Control является независимым проектом сообщества и не связан с
 FIIO Electronics Technology Co., Ltd. и не одобрен этой компанией.
