@@ -41,7 +41,15 @@ jobs:
           if (-not (Test-Path -LiteralPath $exe)) { throw "Build output is missing" }
           $signature = Get-AuthenticodeSignature -LiteralPath $exe
           if ($signature.Status -ne "NotSigned") {
-            throw "CI build must remain unsigned; release signing has a separate trusted workflow"
+            throw "Expected an unsigned portable build"
           }
-      - name: Validate development MSIX package
-        run: python scripts/build_msix.py
+          $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $exe).Hash.ToLowerInvariant()
+          "$hash  FIIO-Air-Link-Control.exe" | Set-Content -Encoding ascii "release/FIIO-Air-Link-Control.exe.sha256"
+      - name: Upload portable executable
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: FIIO-Air-Link-Control-${{ github.sha }}
+          path: |
+            release/FIIO-Air-Link-Control.exe
+            release/FIIO-Air-Link-Control.exe.sha256
+          if-no-files-found: error

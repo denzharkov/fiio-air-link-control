@@ -79,18 +79,14 @@ name length is little-endian bytes `18..19`; UTF-8 name begins at byte `20`.
 - 62 unit tests pass.
 - `pip check` passes.
 - Published unsigned `v0.2.0-beta.1` received a user-side Defender ML detection
-  `Trojan:Win32/Wacatac.B!ml`; its binary must not be treated as distributable.
+  `Trojan:Win32/Wacatac.B!ml`. Microsoft analyzed the exact file, classified it
+  as clean, and removed the false-positive detection.
 - Portable EXE builds and launches.
-- Latest local unsigned portable size is 13,899,966 bytes (approximately 13.26 MiB).
+- Latest local unsigned portable size is approximately 13.1 MiB.
 - EXE is unsigned and may trigger SmartScreen.
-- Regular CI validates both the unsigned executable and a development MSIX.
-- SignPath Foundation rejected the project because it does not yet have enough
-  external reputation signals. The release path is now Microsoft Store MSIX;
-  Store certification automatically replaces the package signature with a
-  Microsoft certificate.
-- Store identity from Partner Center is committed in
-  `packaging/store_identity.json`; the Store workflow runs on `main` pushes or
-  manually and produces an MSIX artifact for Partner Center submission.
+- CI tests, builds the unsigned portable EXE, creates SHA-256, and publishes both
+  files as a workflow artifact. SignPath and Microsoft Store distribution were
+  abandoned after their account-verification processes rejected the project.
 - Pairing command `18` is available in the UI and confirmed by paired-list readback.
 - A clean Windows 10/11 test without Python is still required.
 

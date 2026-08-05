@@ -109,20 +109,7 @@ Unit-тесты не требуют подключённого устройст�
 Результат: `release/FIIO-Air-Link-Control.exe`. Файл пока не подписан, поэтому
 Microsoft SmartScreen может показать предупреждение.
 
-Для Microsoft Store используется one-folder PyInstaller payload внутри MSIX:
-
-```powershell
-.\.venv\Scripts\python.exe scripts\build_msix.py
-```
-
-Store автоматически переподписывает прошедший сертификацию MSIX сертификатом
-Microsoft. Production identity из Partner Center хранится в публичном файле
-`packaging/store_identity.json`; это не секретные данные.
-
-Так как Store запрещает нулевую первую часть package version, версия приложения
-`0.2.0` упаковывается как MSIX version `1.2.0.0`; это не меняет отображаемую
-версию FALC.
-
-Workflow `Microsoft Store Package` запускается после push в `main` и вручную,
-собирает production MSIX artifact для загрузки в Partner Center. GitHub Releases
-не используются для распространения unsigned Windows binaries.
+GitHub Actions после успешных тестов собирает тот же portable EXE, создаёт
+SHA-256 и публикует оба файла как workflow artifact. Microsoft Security
+Intelligence проверил первый публичный build после детекта
+`Trojan:Win32/Wacatac.B!ml`, признал файл безопасным и удалил false positive.

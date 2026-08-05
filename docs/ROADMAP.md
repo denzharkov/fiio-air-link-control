@@ -36,14 +36,12 @@
   используется только как промежуточный reset и не проходит устойчивый readback.
 - Успешный pair action `18`, event `0x83` и paired-device list readback аппаратно
   подтверждены; pairing доступен без firmware-gating.
-- Обычный CI проверяет unsigned Windows build и development MSIX, но не публикует
-  бинарники. Production MSIX собирается отдельным Store workflow с Product
-  identity из Partner Center; Microsoft Store переподписывает пакет после
-  сертификации.
+- CI проверяет тесты, собирает portable Windows EXE, создаёт SHA-256 и публикует
+  оба файла как workflow artifact.
 - Unsigned `v0.2.0-beta.1` получил пользовательский Defender ML detect
-  `Trojan:Win32/Wacatac.B!ml`; замена должна выйти отдельным подписанным
-  `v0.2.0-beta.2` через Microsoft Store. Microsoft подтвердил false positive и
-  удалил детект для отправленного файла.
+  `Trojan:Win32/Wacatac.B!ml`; замена должна выйти отдельным
+  `v0.2.0-beta.2` через GitHub Releases. Microsoft подтвердил false positive и
+  удалил детект для отправленного файла; новые hashes всё равно требуют проверки.
 - Следующий этап: исследовать удаление одного сопряжения.
 
 ## Принципы разработки
